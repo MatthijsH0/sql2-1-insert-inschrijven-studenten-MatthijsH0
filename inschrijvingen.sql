@@ -24,8 +24,14 @@ WHERE ov_nummer = 93213;
 
 UPDATE studenten 
 SET actief = FALSE
-WHERE inschrijvings_datum < 1-1-2017
+WHERE inschrijvings_datum < 1-1-2017;
 
-SELECT ov_nummer, klas_code, cohort, CONCAT(docenten.voornaam, docenten.tussenvoegsel, docenten.achternaam) AS slber
+SELECT studenten.ov_nummer, CONCAT(studenten.voornaam,' ', studenten.tussenvoegsel,' ', studenten.achternaam) AS studenten, klassen.cohort,  klassen.klas_code, CONCAT(docenten.voorletters, docenten.tussenvoegsel, docenten.achternaam) AS slber
 FROM studenten
-ORDER BY klas_code, achternaam 
+INNER JOIN klassen_studenten
+ON studenten.ov_nummer = klassen_studenten.ov_nummer
+INNER JOIN klassen
+ON klassen_studenten.klas_code = klassen.klas_code
+INNER JOIN docenten
+ON klassen.slb_code = docenten.docent_code
+ORDER BY klas_code, studenten.achternaam 
