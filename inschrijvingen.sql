@@ -17,4 +17,7 @@ VALUES (99009, 'lo9e-amo1'),
        (99219, 'lo9e-amo2'),
        (93213, 'lo9e-amo3'),
        (98765, 'lo9e-amo3')
-       
+
+UPDATE studenten
+SET geboortedatum = '1999-08-12'
+WHERE ov_nummer = 93213
